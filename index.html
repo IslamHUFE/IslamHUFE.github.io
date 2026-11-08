@@ -17,12 +17,13 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+<!-- Google AdSense loader (loads once for the whole page) -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8255041292592553"
+     crossorigin="anonymous"></script>
 <!--
-  ADSENSE SETUP (do this once):
-  1. Paste your AdSense loader script here, inside <head>, e.g.
-     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
-  2. Paste each ad unit's <ins class="adsbygoogle"> snippet inside the matching
-     <div class="adsense-slot"> below (header, mid-page, footer).
+  Each ad slot below has data-ad-slot="REPLACE_WITH_..._SLOT_ID".
+  Create 3 display ad units in AdSense (Ads > By ad unit) and paste each
+  unit's numeric slot ID in the matching <ins> tag.
 -->
 
 <style>
@@ -168,8 +169,13 @@
   <div class="ad-zone" aria-label="Advertisement">
     <span class="ad-label">Advertisement</span>
     <div class="adsense-slot" id="ad-header">
-      <!-- Insert Google AdSense Snippet Here -->
-      Ad space
+      <!-- Header leaderboard ad unit -->
+      <ins class="adsbygoogle"
+           style="display:block;width:100%"
+           data-ad-client="ca-pub-8255041292592553"
+           data-ad-slot="REPLACE_WITH_HEADER_SLOT_ID"
+           data-ad-format="horizontal"
+           data-full-width-responsive="true"></ins>
     </div>
   </div>
 
@@ -243,8 +249,13 @@
     <div class="ad-zone spaced" aria-label="Advertisement">
       <span class="ad-label">Advertisement</span>
       <div class="adsense-slot" id="ad-mid" style="min-height:250px">
-        <!-- Insert Google AdSense Snippet Here -->
-        Ad space
+        <!-- Mid-page ad unit -->
+        <ins class="adsbygoogle"
+             style="display:block;width:100%"
+             data-ad-client="ca-pub-8255041292592553"
+             data-ad-slot="REPLACE_WITH_MID_SLOT_ID"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
       </div>
     </div>
 
@@ -278,8 +289,13 @@
   <div class="ad-zone spaced" aria-label="Advertisement">
     <span class="ad-label">Advertisement</span>
     <div class="adsense-slot" id="ad-footer">
-      <!-- Insert Google AdSense Snippet Here -->
-      Ad space
+      <!-- Footer banner ad unit -->
+      <ins class="adsbygoogle"
+           style="display:block;width:100%"
+           data-ad-client="ca-pub-8255041292592553"
+           data-ad-slot="REPLACE_WITH_FOOTER_SLOT_ID"
+           data-ad-format="horizontal"
+           data-full-width-responsive="true"></ins>
     </div>
   </div>
 </div>
@@ -319,6 +335,13 @@
 <script>
   // Footer year
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Activate AdSense units. Units that still have the REPLACE_... placeholder
+  // slot ID are skipped, so nothing breaks before you add your real IDs.
+  document.querySelectorAll('ins.adsbygoogle').forEach(function (ad) {
+    if (/^REPLACE/.test(ad.getAttribute('data-ad-slot') || '')) return;
+    try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) { console.warn('AdSense:', e); }
+  });
 
   // Decorative eye diagram: overlays many noisy bit transitions.
   (function () {
